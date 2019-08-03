@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import SelectListGroup from "../common/SelectListGroup";
+import { createProfile } from "../../actions/profileActions";
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -13,8 +15,6 @@ class CreateProfile extends Component {
       interests: "",
       bio: "",
       githubusername: "",
-      movies: "",
-      books: "",
       errors: {}
     };
 
@@ -22,10 +22,23 @@ class CreateProfile extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   onSubmit(e) {
     e.preventDefault();
 
-    console.log("submit");
+    const profileData = {
+      handle: this.state.handle,
+      interests: this.state.interests,
+      bio: this.state.bio,
+      githubusername: this.state.githubusername
+    };
+
+    this.props.createProfile(profileData, this.props.history);
   }
 
   onChange(e) {
@@ -61,14 +74,14 @@ class CreateProfile extends Component {
                   error={errors.handle}
                   info="A unique handle for your profile."
                 />
-                <SelectListGroup
-                  placeholder="Interests"
+                <TextFieldGroup
+                  placeholder="* Interests"
                   name="interests"
                   value={this.state.interests}
                   onChange={this.onChange}
-                  options={options}
                   error={errors.interests}
-                  info="Give us an interest of yours"
+                  info="Please use comma separated values (eg.
+                    Moves,Books)"
                 />
                 <TextFieldGroup
                   placeholder="Github Username"
@@ -87,6 +100,11 @@ class CreateProfile extends Component {
                   options={options}
                   error={errors.bio}
                   info="Tell us a little bit about yourself"
+                />
+                <input
+                  type="submit"
+                  value="Submit"
+                  className="btn btn-info btn-block mt-4"
                 />
               </form>
             </div>
@@ -107,4 +125,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps)(CreateProfile);
+export default connect(
+  mapStateToProps,
+  { createProfile }
+)(withRouter(CreateProfile));
