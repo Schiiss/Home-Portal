@@ -16,6 +16,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import CreateProfile from "./components/create-profile/CreateProfile";
 import EditProfile from "./components/edit-profile/EditProfile";
 import AddMovies from "./components/add-interests/AddMovies";
+import AddBooks from "./components/add-interests/AddBooks";
 
 //Bring in auth layout files
 import Register from "./components/auth/Register";
@@ -74,6 +75,9 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/add-movies" component={AddMovies} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/add-books" component={AddBooks} />
               </Switch>
             </div>
             <Footer />

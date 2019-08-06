@@ -4,13 +4,14 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import SelectListGroup from "../common/SelectListGroup";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { addBooks } from "../../actions/profileActions";
 
-class AddMovies extends Component {
+class AddBooks extends Component {
   constructor(props) {
     super(props);
     this.state = {
       title: "",
-      genre: "",
+      author: "",
       errors: {}
     };
 
@@ -27,12 +28,12 @@ class AddMovies extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const movieData = {
+    const bookData = {
       title: this.state.title,
-      genre: this.state.genre
+      author: this.state.author
     };
 
-    this.props.addMovies(movieData, this.props.history);
+    this.props.addBooks(bookData, this.props.history);
   }
 
   onChange(e) {
@@ -42,23 +43,17 @@ class AddMovies extends Component {
   render() {
     const { errors } = this.state;
 
-    const options = [
-      { label: "* Select Genre", value: 0 },
-      { label: "Action", value: "Action" },
-      { label: "Horror", value: "Horror" },
-      { label: "Documentaries", value: "Documentaries" }
-    ];
     return (
-      <div className="add-movies">
+      <div className="add-books">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
               <Link to="/dashboard" className="btn btn-light">
                 Go Back
               </Link>
-              <h1 className="display-4 text-center">Add Movies</h1>
+              <h1 className="display-4 text-center">Add Books</h1>
               <p className="lead text-center">
-                Add a movie you are interested in
+                Add a book you are interested in
               </p>
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
@@ -68,16 +63,15 @@ class AddMovies extends Component {
                   value={this.state.title}
                   onChange={this.onChange}
                   error={errors.title}
-                  info="The title of the movie you are looking for"
+                  info="The title of the book you are looking for"
                 />
-                <SelectListGroup
-                  placeholder="* Genre"
-                  name="genre"
-                  value={this.state.genre}
+                <TextFieldGroup
+                  placeholder="* Author"
+                  name="author"
+                  value={this.state.author}
                   onChange={this.onChange}
-                  options={options}
-                  error={errors.genre}
-                  info="Select the genre"
+                  error={errors.author}
+                  info="The author of the book you are looking for"
                 />
                 <input
                   type="submit"
@@ -93,8 +87,8 @@ class AddMovies extends Component {
   }
 }
 
-AddMovies.propTypes = {
-  addMovies: PropTypes.func.isRequired,
+AddBooks.propTypes = {
+  addBooks: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -106,5 +100,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addMovies }
-)(withRouter(AddMovies));
+  { addBooks }
+)(withRouter(AddBooks));

@@ -53,6 +53,19 @@ export const addMovies = (movieData, history) => dispatch => {
     );
 };
 
+//Add Books
+export const addBooks = (bookData, history) => dispatch => {
+  axios
+    .post("/api/profile/books", bookData)
+    .then(res => history.push("/dashboard"))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 //Delete Account
 export const deleteAccount = () => dispatch => {
   if (window.confirm("Are you sure? This can NOT be reversed.")) {
