@@ -21,7 +21,7 @@ class Navbar extends Component {
           <a
             href="#"
             onClick={this.onLogoutClick.bind(this)}
-            classname="nav-link"
+            className="nav-link"
           >
             <h1 alt={user.name} />
             Logout

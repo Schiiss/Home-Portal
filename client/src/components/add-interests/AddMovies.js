@@ -4,13 +4,14 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import SelectListGroup from "../common/SelectListGroup";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { addMovies } from "../../actions/profileActions";
 
 class AddMovies extends Component {
   constructor(props) {
     super(props);
     this.state = {
       title: "",
-      genere: "",
+      genre: "",
       errors: {}
     };
 
@@ -18,9 +19,21 @@ class AddMovies extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   onSubmit(e) {
     e.preventDefault();
-    console.log("submit");
+
+    const movieData = {
+      title: this.state.title,
+      genre: this.state.genre
+    };
+
+    this.props.addMovies(movieData, this.props.history);
   }
 
   onChange(e) {
@@ -31,7 +44,7 @@ class AddMovies extends Component {
     const { errors } = this.state;
 
     const options = [
-      { label: "* Select Genere", value: 0 },
+      { label: "* Select Genre", value: 0 },
       { label: "Action", value: "Action" },
       { label: "Horror", value: "Horror" },
       { label: "Documentaries", value: "Documentaries" }
@@ -59,13 +72,13 @@ class AddMovies extends Component {
                   info="The title of the movie you are looking for"
                 />
                 <SelectListGroup
-                  placeholder="* Genere"
-                  name="genere"
-                  value={this.state.genere}
+                  placeholder="* Genre"
+                  name="genre"
+                  value={this.state.genre}
                   onChange={this.onChange}
                   options={options}
-                  error={errors.genere}
-                  info="Select the genere"
+                  error={errors.genre}
+                  info="Select the genre"
                 />
                 <input
                   type="submit"
@@ -82,6 +95,7 @@ class AddMovies extends Component {
 }
 
 AddMovies.propTypes = {
+  addMovies: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -91,4 +105,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps)(withRouter(AddMovies));
+export default connect(
+  mapStateToProps,
+  { addMovies }
+)(withRouter(AddMovies));
