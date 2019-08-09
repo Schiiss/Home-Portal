@@ -6,6 +6,7 @@ import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
 import Spinner from "../common/Spinner";
 import ProfileActions from "./ProfileActions";
 import Movies from "./Movies";
+import Books from "./Books";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -34,6 +35,7 @@ class Dashboard extends Component {
             </p>
             <ProfileActions />
             <Movies movies={profile.movies} />
+            <Books books={profile.books} />
             <div style={{ marginBottom: "60px" }} />
             <button
               onClick={this.onDeleteClick.bind(this)}

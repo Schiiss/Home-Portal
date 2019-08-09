@@ -84,6 +84,24 @@ export const deleteMovie = id => dispatch => {
     );
 };
 
+//Delete Book
+export const deleteBook = id => dispatch => {
+  axios
+    .delete(`/api/profile/books/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 //Delete Account
 export const deleteAccount = () => dispatch => {
   if (window.confirm("Are you sure? This can NOT be reversed.")) {
