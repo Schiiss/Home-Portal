@@ -18,6 +18,7 @@ import EditProfile from "./components/edit-profile/EditProfile";
 import AddMovies from "./components/add-interests/AddMovies";
 import AddBooks from "./components/add-interests/AddBooks";
 import Profiles from "./components/profiles/Profiles";
+import Profile from "./components/profile/Profile";
 
 //Bring in auth layout files
 import Register from "./components/auth/Register";
@@ -82,6 +83,13 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/profiles" component={Profiles} />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/profile/:handle"
+                  component={Profile}
+                />
               </Switch>
             </div>
             <Footer />
