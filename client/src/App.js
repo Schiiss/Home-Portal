@@ -58,51 +58,45 @@ class App extends Component {
           <div className="App">
             <Navbar />
             <Route exact path="/" component={Landing} />
-            <div className="container">
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
-              <Switch>
-                <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              </Switch>
-              <Switch>
-                <PrivateRoute
-                  exact
-                  path="/create-profile"
-                  component={CreateProfile}
-                />
-              </Switch>
-              <Switch>
-                <PrivateRoute
-                  exact
-                  path="/edit-profile"
-                  component={EditProfile}
-                />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path="/add-movies" component={AddMovies} />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path="/add-books" component={AddBooks} />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path="/profiles" component={Profiles} />
-              </Switch>
-              <Switch>
-                <PrivateRoute
-                  exact
-                  path="/profile/:handle"
-                  component={Profile}
-                />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path="/feed" component={Posts} />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path="/post/:id" component={Post} />
-              </Switch>
-              <Route exact path="/not-found" component={NotFound} />
-            </div>
-            <Footer />
+
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <Switch>
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/create-profile"
+                component={CreateProfile}
+              />
+            </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/edit-profile"
+                component={EditProfile}
+              />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/add-movies" component={AddMovies} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/add-books" component={AddBooks} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/profiles" component={Profiles} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/profile/:handle" component={Profile} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/feed" component={Posts} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/post/:id" component={Post} />
+            </Switch>
+            <Route exact path="/not-found" component={NotFound} />
           </div>
         </Router>
       </Provider>
