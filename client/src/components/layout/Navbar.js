@@ -35,7 +35,10 @@ class Navbar extends Component {
             onClick={this.onLogoutClick.bind(this)}
             className="nav-link"
           >
-            <h1 alt={user.name} />
+            <img
+              alt={user.name}
+              style={{ width: "25px", marginRight: "5px" }}
+            />{" "}
             Logout
           </a>
         </li>
@@ -59,7 +62,7 @@ class Navbar extends Component {
       <nav className="navbar bg-dark">
         <h1>
           <Link to="/">
-            <i className="fas fa-code" /> Home Portal
+            <i className="fas fa-radiation" /> Home Portal
           </Link>
         </h1>
         {isAuthenticated ? authLinks : guestLinks}
