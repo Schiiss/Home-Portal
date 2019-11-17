@@ -63,6 +63,13 @@ router.get(
   }
 );
 
+// @route   GET api/profile/pipelines
+// @desc    Tests Pipelines route
+// @access  Public
+router.get("/pipelines", (req, res) =>
+  res.json({ msg: "Pipelines Route Works" })
+);
+
 // @route   GET api/profile/handle/:handle
 // @desc    Get Profile by handle
 // @access  Private

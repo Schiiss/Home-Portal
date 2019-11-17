@@ -17,6 +17,7 @@ import CreateProfile from "./components/create-profile/CreateProfile";
 import EditProfile from "./components/edit-profile/EditProfile";
 import AddMovies from "./components/add-interests/AddMovies";
 import AddBooks from "./components/add-interests/AddBooks";
+import AddPipelines from "./components/pipelines/AddPipelines";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import Posts from "./components/posts/Posts";
@@ -83,6 +84,13 @@ class App extends Component {
             </Switch>
             <Switch>
               <PrivateRoute exact path="/add-books" component={AddBooks} />
+            </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/add-pipelines"
+                component={AddPipelines}
+              />
             </Switch>
             <Switch>
               <PrivateRoute exact path="/profiles" component={Profiles} />

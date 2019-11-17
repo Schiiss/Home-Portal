@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
+import { Link } from "react-router-dom";
 
 class Login extends Component {
   constructor() {
@@ -77,7 +78,11 @@ class Login extends Component {
           <input type="submit" className="btn btn-primary" value="Login" />
         </form>
         <p className="my-1">
-          Don't have an account? <a href="register.html">Sign Up</a>
+          Don't have an account?
+          <Link className="nav-link" to="/register">
+            {" "}
+            Sign Up
+          </Link>
         </p>
       </section>
     );
@@ -95,7 +100,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(
-  mapStateToProps,
-  { loginUser }
-)(Login);
+export default connect(mapStateToProps, { loginUser })(Login);

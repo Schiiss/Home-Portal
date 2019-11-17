@@ -6,7 +6,8 @@ import {
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
   GET_ERRORS,
-  SET_CURRENT_USER
+  SET_CURRENT_USER,
+  GET_PIPELINES
 } from "./types";
 
 //Get current profile
@@ -159,6 +160,24 @@ export const deleteAccount = () => dispatch => {
         })
       );
   }
+};
+
+//Get Running Pipelines
+export const addPipelines = () => dispatch => {
+  axios
+    .get("/api/pipelines")
+    .then(res =>
+      dispatch({
+        type: GET_PIPELINES,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: null
+      })
+    );
 };
 
 //Profile loading
