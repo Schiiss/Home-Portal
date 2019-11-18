@@ -349,7 +349,7 @@ button {
   text-align: center;
 }
 
-/* Profiles Page */
+/* Profiles Page 
 .profile {
   display: grid;
   grid-template-columns: 2fr 4fr 2fr;
@@ -359,7 +359,7 @@ button {
   line-height: 1.8;
   margin-bottom: 1rem;
 }
-
+*/
 /* Profile Page */
 .profile-grid {
   display: grid;
