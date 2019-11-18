@@ -33,20 +33,38 @@ class AddPipelines extends Component {
 
     const pipelineMetrics = pipelines.map(pipeline => (
       <div key={pipeline.id} className="card card-body mb-2">
-        <div className="row">
-          <div className="col-md-6">
+        <div className="container">
+          <div className="row">
             <ul>
-              <li>{pipeline.title}</li>
+              <li>
+                <a
+                  href={
+                    `http://192.168.2.135:32784/collector/pipeline/` +
+                    pipeline.pipelineId
+                  }
+                  rel={"external"}
+                  className="text-info"
+                  target="_blank"
+                >
+                  {pipeline.title}
+                </a>
+              </li>
             </ul>
           </div>
         </div>
       </div>
     ));
     return (
-      <div ref="myRef">
-        <hr />
-        <h3 className="mb-4">Streamsets Pipelines</h3>
-        {pipelineMetrics}
+      <div className="pipelines">
+        <div className="container">
+          <div className="row">
+            <div ref="myRef">
+              <hr />
+              <h3 className="col-mb-12">Streamsets Pipelines</h3>
+              {pipelineMetrics}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

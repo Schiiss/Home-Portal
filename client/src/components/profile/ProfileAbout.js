@@ -16,14 +16,22 @@ class ProfileAbout extends Component {
       </div>
     ));
     return (
-      <div className="profile-about bg-light p-2">
-        <h2 className="text-primary">{firstName}'s Bio</h2>
-        <p className="lead">
-          {isEmpty(profile.bio) ? null : <span>{profile.bio}</span>}
-        </p>
-        <div className="line" />
-        <h2 className="text-primary">Interests</h2>
-        <div className="skills">{interests}</div>
+      <div className="row">
+        <div className="col-md-12">
+          <div className="profile-about bg-light p-2">
+            <h2 className="text-primary">{firstName}'s Bio</h2>
+            <p className="lead">
+              {isEmpty(profile.bio) ? null : <span>{profile.bio}</span>}
+            </p>
+            <div className="line" />
+            <h2 className="text-primary">Interests</h2>
+            <div className="row">
+              <div className="d-flex flex-wrap justify-content-center align-items-center">
+                {interests}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

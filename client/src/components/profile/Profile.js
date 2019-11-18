@@ -30,14 +30,13 @@ class Profile extends Component {
       profileContent = <Spinner />;
     } else {
       profileContent = (
-        <div>
+        <div className="container">
           <div className="row">
             <div className="col-md-6">
               <Link to="/profiles" className="btn btn-light mb-3 float-left">
                 Back to profiles
               </Link>
             </div>
-            <div className="col-md-6" />
           </div>
           <ProfileHeader profile={profile} />
           <ProfileAbout profile={profile} />
@@ -69,7 +68,4 @@ const mapStateToProps = state => ({
   profile: state.profile
 });
 
-export default connect(
-  mapStateToProps,
-  { getProfileByHandle }
-)(Profile);
+export default connect(mapStateToProps, { getProfileByHandle })(Profile);
