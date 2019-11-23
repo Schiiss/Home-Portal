@@ -56,7 +56,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <div className="App">
+          <div className="dark-mode">
             <Navbar />
             <Route exact path="/" component={Landing} />
 

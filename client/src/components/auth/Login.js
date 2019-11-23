@@ -54,7 +54,7 @@ class Login extends Component {
     return (
       <section className="container">
         <div className="alert alert-danger">Invalid credentials</div>
-        <h1 className="large text-primary">Sign In</h1>
+        <h1 className="dark-mode">Sign In</h1>
         <p className="lead">
           <i className="fas fa-user" /> Sign into Your Account
         </p>

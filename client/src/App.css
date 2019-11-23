@@ -1,6 +1,6 @@
 /* Global Styles */
 :root {
-  --primary-color: #17a2b8;
+  --primary-color: #e28711;
   --dark-color: #343a40;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
@@ -13,11 +13,21 @@
   padding: 0;
 }
 
+.light-mode {
+  background-color: #fff;
+  color: #333;
+}
+
+.dark-mode {
+  background-color: #1a1919;
+  color: #999;
+}
+
 body {
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #fff;
+  background-color: #1a1919;
   color: #333;
 }
 
@@ -328,6 +338,10 @@ button {
 
 .navbar .welcome span {
   margin-right: 0.6rem;
+}
+
+.dark-mode nav {
+  background-color: #1b2938;
 }
 
 /* Landing Page */

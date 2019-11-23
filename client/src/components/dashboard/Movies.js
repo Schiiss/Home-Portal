@@ -11,8 +11,8 @@ class Movies extends Component {
   render() {
     const movies = this.props.movies.map(movies => (
       <tr key={movies._id}>
-        <td>{movies.title}</td>
-        <td>{movies.genre}</td>
+        <td className="dark-mode">{movies.title}</td>
+        <td className="dark-mode">{movies.genre}</td>
         <td>
           <button
             onClick={this.onDeleteClick.bind(this, movies._id)}
@@ -45,7 +45,4 @@ Movies.propTypes = {
   deleteMovie: PropTypes.func.isRequired
 };
 
-export default connect(
-  null,
-  { deleteMovie }
-)(Movies);
+export default connect(null, { deleteMovie })(Movies);

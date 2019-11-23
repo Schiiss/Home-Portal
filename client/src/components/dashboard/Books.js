@@ -11,8 +11,8 @@ class Book extends Component {
   render() {
     const books = this.props.books.map(books => (
       <tr key={books._id}>
-        <td>{books.title}</td>
-        <td>{books.author}</td>
+        <td className="dark-mode">{books.title}</td>
+        <td className="dark-mode">{books.author}</td>
         <td>
           <button
             onClick={this.onDeleteClick.bind(this, books._id)}
@@ -45,7 +45,4 @@ Book.propTypes = {
   deleteBook: PropTypes.func.isRequired
 };
 
-export default connect(
-  null,
-  { deleteBook }
-)(Book);
+export default connect(null, { deleteBook })(Book);
