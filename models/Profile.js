@@ -46,6 +46,14 @@ const ProfileSchema = new Schema({
         required: true
       }
     }
+  ],
+  pipelines: [
+    {
+      name: {
+        type: [String],
+        required: true
+      }
+    }
   ]
 });
 

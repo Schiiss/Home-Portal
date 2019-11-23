@@ -63,13 +63,6 @@ router.get(
   }
 );
 
-// @route   GET api/profile/pipelines
-// @desc    Tests Pipelines route
-// @access  Public
-router.get("/pipelines", (req, res) =>
-  res.json({ msg: "Pipelines Route Works" })
-);
-
 // @route   GET api/profile/handle/:handle
 // @desc    Get Profile by handle
 // @access  Private
@@ -81,7 +74,7 @@ router.get(
       .populate("user", ["name"])
       .then(profile => {
         if (!profile) {
-          errors.noprofile = "No profile foind for this user";
+          errors.noprofile = "No profile found for this user";
           res.status(404).json(errors);
         }
 

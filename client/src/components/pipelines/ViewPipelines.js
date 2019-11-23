@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-import { addPipelines } from "../../actions/profileActions";
+import { viewPipelines } from "../../actions/profileActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-class AddPipelines extends Component {
+class ViewPipelines extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -75,6 +75,6 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addPipelines })(
-  withRouter(AddPipelines)
+export default connect(mapStateToProps, { viewPipelines })(
+  withRouter(ViewPipelines)
 );

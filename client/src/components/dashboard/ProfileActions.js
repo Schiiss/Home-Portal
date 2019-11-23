@@ -15,9 +15,9 @@ const ProfileActions = () => {
         <i className="fas fas fa-book text-info mr-1" />
         Add Books
       </Link>
-      <Link to="/add-pipelines" className="btn btn-light">
+      <Link to="/view-pipelines" className="btn btn-light">
         <i className="fas fas fa-heartbeat text-info mr-1" />
-        Add Pipelines
+        View Pipelines
       </Link>
     </div>
   );

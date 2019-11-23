@@ -162,8 +162,8 @@ export const deleteAccount = () => dispatch => {
   }
 };
 
-//Get Running Pipelines
-export const addPipelines = () => dispatch => {
+//Views Pipelines
+export const viewPipelines = () => dispatch => {
   axios
     .get("/api/pipelines")
     .then(res =>
