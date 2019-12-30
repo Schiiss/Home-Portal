@@ -14,40 +14,22 @@ class ViewPipelines extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://192.168.2.135:32784/rest/v1/pipelines`, {
-      headers: new Headers({
-        Authorization: "Basic " + Buffer.from("admin:admin").toString("base64")
-      })
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (this.refs.myRef) {
-          this.setState({ pipelines: data });
-        }
-      })
-      .catch(err => console.log(err));
+    this.props.viewPipelines();
   }
 
   render() {
-    const { pipelines } = this.state;
-
-    const pipelineMetrics = pipelines.map(pipeline => (
+    const pipelineItems = this.props.pipelines.map(pipeline => (
       <div key={pipeline.id} className="card card-body mb-2">
         <div className="container">
           <div className="row">
             <ul>
               <li>
-                <a
-                  href={
-                    `http://192.168.2.135:32784/collector/pipeline/` +
-                    pipeline.pipelineId
-                  }
-                  rel={"external"}
-                  className="text-info"
-                  target="_blank"
+                <Link
+                  to={`/view-pipeline/${pipeline.pipelineId}`}
+                  className="btn btn-info"
                 >
                   {pipeline.title}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -61,7 +43,7 @@ class ViewPipelines extends Component {
             <div ref="myRef">
               <hr />
               <h3 className="col-mb-12">Streamsets Pipelines</h3>
-              {pipelineMetrics}
+              {pipelineItems}
             </div>
           </div>
         </div>
@@ -71,7 +53,7 @@ class ViewPipelines extends Component {
 }
 
 const mapStateToProps = state => ({
-  profile: state.profile,
+  pipelines: state.profile.pipelines,
   errors: state.errors
 });
 

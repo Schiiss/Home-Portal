@@ -7,7 +7,8 @@ import {
   CLEAR_CURRENT_PROFILE,
   GET_ERRORS,
   SET_CURRENT_USER,
-  GET_PIPELINES
+  GET_PIPELINES,
+  GET_PIPELINE
 } from "./types";
 
 //Get current profile
@@ -164,12 +165,41 @@ export const deleteAccount = () => dispatch => {
 
 //Views Pipelines
 export const viewPipelines = () => dispatch => {
-  axios
-    .get("/api/pipelines")
-    .then(res =>
+  fetch(`http://192.168.2.135:32784/rest/v1/pipelines`, {
+    headers: new Headers({
+      Authorization: "Basic " + Buffer.from("admin:admin").toString("base64")
+    })
+  })
+    .then(res => res.json())
+    .then(pipelines =>
       dispatch({
         type: GET_PIPELINES,
-        payload: res.data
+        payload: pipelines
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: null
+      })
+    );
+};
+
+//View a Pipeline by Pipeline Id
+export const viewPipeline = () => dispatch => {
+  fetch(
+    `http://192.168.2.135:32784/rest/v1/pipeline/RESTAPIPOCbbee1180-a38b-4858-9a4b-b95f0fd89e69/status`,
+    {
+      headers: new Headers({
+        Authorization: "Basic " + Buffer.from("admin:admin").toString("base64")
+      })
+    }
+  )
+    .then(res => res.json())
+    .then(pipeline =>
+      dispatch({
+        type: GET_PIPELINE,
+        payload: pipeline
       })
     )
     .catch(err =>

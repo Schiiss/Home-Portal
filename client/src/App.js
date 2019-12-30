@@ -18,6 +18,7 @@ import EditProfile from "./components/edit-profile/EditProfile";
 import AddMovies from "./components/add-interests/AddMovies";
 import AddBooks from "./components/add-interests/AddBooks";
 import ViewPipelines from "./components/pipelines/ViewPipelines";
+import ViewPipeline from "./components/pipeline/ViewPipeline";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import Posts from "./components/posts/Posts";
@@ -90,6 +91,13 @@ class App extends Component {
                 exact
                 path="/view-pipelines"
                 component={ViewPipelines}
+              />
+            </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/view-pipeline/:pipelineId"
+                component={ViewPipeline}
               />
             </Switch>
             <Switch>

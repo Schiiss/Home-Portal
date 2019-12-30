@@ -2,12 +2,16 @@ import {
   GET_PROFILE,
   GET_PROFILES,
   PROFILE_LOADING,
-  CLEAR_CURRENT_PROFILE
+  CLEAR_CURRENT_PROFILE,
+  GET_PIPELINE,
+  GET_PIPELINES
 } from "../actions/types";
 
 const initialState = {
   profile: null,
   profiles: null,
+  pipelines: [],
+  pipeline: null,
   loading: false
 };
 
@@ -34,6 +38,18 @@ export default function(state = initialState, action) {
       return {
         ...state,
         profile: null
+      };
+    case GET_PIPELINES:
+      return {
+        ...state,
+        pipelines: action.payload,
+        loading: false
+      };
+    case GET_PIPELINE:
+      return {
+        ...state,
+        pipeline: action.payload,
+        loading: false
       };
     default:
       return state;

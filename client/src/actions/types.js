@@ -12,3 +12,5 @@ export const GET_POST = "GET_POST";
 export const ADD_POST = "ADD_POST";
 export const DELETE_POST = "DELETE_POST";
 export const GET_PIPELINES = "GET_PIPELINES";
+export const GET_PIPELINE = "GET_PIPELINE";
+export const PIPELINES_LOADING = "PIPELINES_LOADING";
