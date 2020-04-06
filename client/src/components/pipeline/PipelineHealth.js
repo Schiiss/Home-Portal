@@ -20,7 +20,6 @@ class PipelineHealth extends Component {
   render() {
     const pipeline = this.props.pipeline;
     let pipelineContent;
-    const allowed = ["attributes"];
 
     if (pipeline === null) {
       pipelineContent = <Spinner />;
@@ -34,8 +33,6 @@ class PipelineHealth extends Component {
           {}
         );
     }
-    //REMOVE THIS. FOR DEBUGGING
-    console.log(filteredPipeline);
 
     if (pipeline === null) {
       pipelineContent = <Spinner />;

@@ -186,15 +186,13 @@ export const viewPipelines = () => dispatch => {
 };
 
 //View a Pipeline by Pipeline Id
-export const viewPipeline = () => dispatch => {
-  fetch(
-    `http://192.168.2.135:32784/rest/v1/pipeline/RESTAPIPOCbbee1180-a38b-4858-9a4b-b95f0fd89e69/status`,
-    {
-      headers: new Headers({
-        Authorization: "Basic " + Buffer.from("admin:admin").toString("base64")
-      })
-    }
-  )
+export const viewPipeline = pipelineId => dispatch => {
+  const pipelineId = "RESTAPIPOCbbee1180-a38b-4858-9a4b-b95f0fd89e69";
+  fetch(`http://192.168.2.135:32784/rest/v1/pipeline/${pipelineId}/status`, {
+    headers: new Headers({
+      Authorization: "Basic " + Buffer.from("admin:admin").toString("base64")
+    })
+  })
     .then(res => res.json())
     .then(pipeline =>
       dispatch({
