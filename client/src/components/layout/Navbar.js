@@ -35,10 +35,6 @@ class Navbar extends Component {
             onClick={this.onLogoutClick.bind(this)}
             className="nav-link"
           >
-            <img
-              alt={user.name}
-              style={{ width: "25px", marginRight: "5px" }}
-            />{" "}
             Logout
           </a>
         </li>
@@ -62,7 +58,7 @@ class Navbar extends Component {
       <nav className="navbar bg-dark">
         <h1>
           <Link to="/">
-            <i className="fas fa-radiation" /> Home Portal
+            <i /> Home Portal
           </Link>
         </h1>
         {isAuthenticated ? authLinks : guestLinks}
@@ -73,11 +69,11 @@ class Navbar extends Component {
 
 Navbar.propTypes = {
   logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(

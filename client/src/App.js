@@ -10,15 +10,12 @@ import PrivateRoute from "./components/common/PrivateRoute";
 
 //Bring in layout files
 import Navbar from "./components/layout/Navbar";
-import Footer from "./components/layout/Footer";
 import Landing from "./components/layout/Landing";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateProfile from "./components/create-profile/CreateProfile";
 import EditProfile from "./components/edit-profile/EditProfile";
 import AddMovies from "./components/add-interests/AddMovies";
 import AddBooks from "./components/add-interests/AddBooks";
-import ViewPipelines from "./components/pipelines/ViewPipelines";
-import ViewPipeline from "./components/pipeline/ViewPipeline";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import Posts from "./components/posts/Posts";
@@ -85,20 +82,6 @@ class App extends Component {
             </Switch>
             <Switch>
               <PrivateRoute exact path="/add-books" component={AddBooks} />
-            </Switch>
-            <Switch>
-              <PrivateRoute
-                exact
-                path="/view-pipelines"
-                component={ViewPipelines}
-              />
-            </Switch>
-            <Switch>
-              <PrivateRoute
-                exact
-                path="/view-pipeline/:pipelineId"
-                component={ViewPipeline}
-              />
             </Switch>
             <Switch>
               <PrivateRoute exact path="/profiles" component={Profiles} />
