@@ -1,104 +1,53 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import jwt_decode from "jwt-decode";
-import setAuthToken from "./utils/setAuthToken";
-import { setCurrentUser, logoutUser } from "./actions/authActions";
-import { Provider } from "react-redux";
-import store from "./store";
-
-import PrivateRoute from "./components/common/PrivateRoute";
-
-//Bring in layout files
-import Navbar from "./components/layout/Navbar";
-import Landing from "./components/layout/Landing";
-import Dashboard from "./components/dashboard/Dashboard";
-import CreateProfile from "./components/create-profile/CreateProfile";
-import EditProfile from "./components/edit-profile/EditProfile";
-import AddMovies from "./components/add-interests/AddMovies";
-import AddBooks from "./components/add-interests/AddBooks";
-import Profiles from "./components/profiles/Profiles";
-import Profile from "./components/profile/Profile";
-import Posts from "./components/posts/Posts";
-import Post from "./components/post/Post";
-
-//Bring in auth layout files
-import Register from "./components/auth/Register";
-import Login from "./components/auth/Login";
-import { clearCurrentProfile } from "./actions/profileActions";
-
+import ReactGA from "react-ga";
+import $ from "jquery";
 import "./App.css";
-import NotFound from "./components/not-found/NotFound";
-
-//Check for token
-if (localStorage.jwtToken) {
-  //Set auth token header auth
-  setAuthToken(localStorage.jwtToken);
-  //Decode token and get user info/exp
-  const decoded = jwt_decode(localStorage.jwtToken);
-  //Set user and isAuthenticated
-  store.dispatch(setCurrentUser(decoded));
-  //Check for expired token
-  const currentTime = Date.now() / 1000;
-  if (decoded.exp < currentTime) {
-    //Logout User
-    store.dispatch(logoutUser());
-    //Clear current profile
-    store.dispatch(clearCurrentProfile());
-    // Redirect to login
-    window.location.href = "/login";
-  }
-}
+import Header from "./Components/landing/Header";
+import Footer from "./Components/landing/Footer";
+import About from "./Components/landing/About";
+import Resume from "./Components/landing/Resume";
+import Portfolio from "./Components/landing/Portfolio";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      foo: "bar",
+      resumeData: {},
+    };
+
+    ReactGA.initialize("UA-110570651-1");
+    ReactGA.pageview(window.location.pathname);
+  }
+
+  getResumeData() {
+    $.ajax({
+      url: "/resumeData.json",
+      dataType: "json",
+      cache: false,
+      success: function (data) {
+        this.setState({ resumeData: data });
+      }.bind(this),
+      error: function (xhr, status, err) {
+        console.log(err);
+        alert(err);
+      },
+    });
+  }
+
+  componentDidMount() {
+    this.getResumeData();
+  }
+
   render() {
     return (
-      <Provider store={store}>
-        <Router>
-          <div className="dark-mode">
-            <Navbar />
-            <Route exact path="/" component={Landing} />
-
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
-            <Switch>
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            </Switch>
-            <Switch>
-              <PrivateRoute
-                exact
-                path="/create-profile"
-                component={CreateProfile}
-              />
-            </Switch>
-            <Switch>
-              <PrivateRoute
-                exact
-                path="/edit-profile"
-                component={EditProfile}
-              />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path="/add-movies" component={AddMovies} />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path="/add-books" component={AddBooks} />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path="/profiles" component={Profiles} />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path="/profile/:handle" component={Profile} />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path="/feed" component={Posts} />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path="/post/:id" component={Post} />
-            </Switch>
-            <Route exact path="/not-found" component={NotFound} />
-          </div>
-        </Router>
-      </Provider>
+      <div className="App">
+        <Header data={this.state.resumeData.main} />
+        <About data={this.state.resumeData.main} />
+        <Resume data={this.state.resumeData.resume} />
+        <Portfolio data={this.state.resumeData.portfolio} />
+        <Footer data={this.state.resumeData.main} />
+      </div>
     );
   }
 }
