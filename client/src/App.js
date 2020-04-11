@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ReactGA from "react-ga";
 import $ from "jquery";
 import "./App.css";
@@ -13,20 +14,20 @@ class App extends Component {
     super(props);
     this.state = {
       foo: "bar",
-      resumeData: {},
+      landingData: {},
     };
 
     ReactGA.initialize("UA-110570651-1");
     ReactGA.pageview(window.location.pathname);
   }
 
-  getResumeData() {
+  getLandingData() {
     $.ajax({
-      url: "/resumeData.json",
+      url: "/landingData.json",
       dataType: "json",
       cache: false,
       success: function (data) {
-        this.setState({ resumeData: data });
+        this.setState({ landingData: data });
       }.bind(this),
       error: function (xhr, status, err) {
         console.log(err);
@@ -36,18 +37,20 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getResumeData();
+    this.getLandingData();
   }
 
   render() {
     return (
-      <div className="App">
-        <Header data={this.state.resumeData.main} />
-        <About data={this.state.resumeData.main} />
-        <Resume data={this.state.resumeData.resume} />
-        <Portfolio data={this.state.resumeData.portfolio} />
-        <Footer data={this.state.resumeData.main} />
-      </div>
+      <Router>
+        <div className="App">
+          <Header data={this.state.landingData.main} />
+          <About data={this.state.landingData.main} />
+          <Resume data={this.state.landingData.resume} />
+          <Portfolio data={this.state.landingData.portfolio} />
+          <Footer data={this.state.landingData.main} />
+        </div>
+      </Router>
     );
   }
 }
