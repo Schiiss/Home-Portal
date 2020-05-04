@@ -2,9 +2,22 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
+import landingData from "./landingData.json";
 
 class Landing extends Component {
   render() {
+    var appName = landingData.main.appName;
+    var description = landingData.main.description;
+    var networks = landingData.main.social.map(function (network) {
+      return (
+        <li key={network.name}>
+          <a href={network.url}>
+            <i className={network.className}></i>
+          </a>
+        </li>
+      );
+    });
+
     return (
       <header id="home">
         <nav id="nav-wrap">
@@ -22,7 +35,7 @@ class Landing extends Component {
               </a>
             </li>
             <li>
-              <a className="smoothscroll" href="#about">
+              <a className="smoothscroll" href="#portfolio">
                 About
               </a>
             </li>
@@ -31,12 +44,10 @@ class Landing extends Component {
 
         <div className="row banner">
           <div className="banner-text">
-            <h1 className="responsive-headline">Welcome to the Home Portal</h1>
-            <h3>
-              A home automation tool to make everyday tasks easier <span></span>
-            </h3>
+            <h1 className="responsive-headline">Welcome To The {appName}.</h1>
+            <h3>{description}</h3>
             <hr />
-            <ul className="social"></ul>
+            <ul className="social">{networks}</ul>
           </div>
         </div>
 

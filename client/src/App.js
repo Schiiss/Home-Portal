@@ -5,12 +5,18 @@ import React, { Component } from "react";
 
 //Import Components
 import Landing from "./components/layout/Landing";
+import About from "./components/layout/About";
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <Route exact path="/" component={Landing} />
+        <div className="App">
+          <>
+            <Landing />
+            <About />
+          </>
+        </div>
       </Router>
     );
   }
