@@ -39,6 +39,16 @@ class Landing extends Component {
                 About
               </a>
             </li>
+            <li>
+              <a className="smoothscroll" href="#portfolio">
+                Login
+              </a>
+            </li>
+            <li>
+              <a className="smoothscroll" href="#portfolio">
+                Register
+              </a>
+            </li>
           </ul>
         </nav>
 
