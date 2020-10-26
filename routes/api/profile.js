@@ -74,7 +74,7 @@ router.get(
       .populate("user", ["name"])
       .then(profile => {
         if (!profile) {
-          errors.noprofile = "No profile foind for this user";
+          errors.noprofile = "No profile found for this user";
           res.status(404).json(errors);
         }
 
