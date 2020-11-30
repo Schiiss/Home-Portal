@@ -3,7 +3,7 @@ name: Build Home-Portal App
 trigger:
   branches:
     include:
-    - 'master' 
+    - 'master'
 
 stages:
 - stage: Build
@@ -11,13 +11,3 @@ stages:
   - job: Build_Client
     pool:
       vmImage: 'ubuntu-latest'
-  steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '10.x'
-  displayName: 'Install Node.js'
-  - script: |
-    cd client
-    npm install
-    npm run build
-  displayName: 'npm install and run build'
