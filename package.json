@@ -9,7 +9,8 @@
     "server": "nodemon app.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "npm run client"
+    "build": "npm run client",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -24,5 +25,12 @@
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "validator": "^11.1.0"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "modulePathIgnorePatterns": ["client", "node_modules"]
   }
 }
