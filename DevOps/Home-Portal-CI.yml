@@ -16,5 +16,5 @@ stages:
       displayName: 'Install Node.js'
       inputs:
         versionSpec: '10.x'
-  - script:
-    cd client
+- script:
+  cd client
